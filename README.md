@@ -1,8 +1,8 @@
 Problem 2: Create a Spring Service to consume a REST endpoint.
 Develop a Spring Boot Microservice which has the following endpoints:
 
-•	/cf
-•	/cf/{provider}
+-	/cf
+-	/cf/{provider}
 
 The endpoint /cf  will return an array of objects with the following information:
 
