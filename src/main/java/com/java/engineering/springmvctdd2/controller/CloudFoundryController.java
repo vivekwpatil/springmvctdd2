@@ -5,6 +5,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +36,25 @@ public class CloudFoundryController {
 
         return ResponseEntity.ok(cfInfos);
 
+    }
+
+    @GetMapping(value = "/cf/{provider}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getProviderByID(@PathVariable String provider) {
+
+        ResponseEntity<cfInfo> response;
+        switch (provider) {
+            case "PWC":
+                response = restTemplate
+                    .exchange(pivotalUrl, HttpMethod.GET, null, cfInfo.class);
+                break;
+            case "BLU":
+                response = restTemplate
+                    .exchange(blueMixUrl, HttpMethod.GET, null, cfInfo.class);
+                break;
+            default:
+                response = ResponseEntity.badRequest().build();
+        }
+        return response;
     }
 
 }
