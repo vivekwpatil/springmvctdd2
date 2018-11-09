@@ -32,5 +32,30 @@ public class Springmvctdd2ApplicationTests {
 
     }
 
+    @Test
+    public void givencfWithParamterPWCwhenMockMVC_thenPWCResponseOKResult() throws Exception {
+        this.mockMvc.perform(get("/cf/PWC"))
+            .andDo(print()).andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andExpect(content().string("{\"description\":\"Cloud Foundry sponsored by Pivotal\",\"api_version\":\"2.125.0\"}"))
+            .andReturn();
+    }
+
+    @Test
+    public void givencfWithParamterBLUwhenMockMVC_thenBLUResponseOKResult() throws Exception {
+        this.mockMvc.perform(get("/cf/BLU"))
+            .andDo(print()).andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andExpect(content().string("{\"description\":\"IBM Bluemix\",\"api_version\":\"2.106.0\"}"))
+            .andReturn();
+    }
+
+    @Test
+    public void givencfWithWrongParamterwhenMockMVC_thenBLUResponseBadRequestResult() throws Exception {
+        this.mockMvc.perform(get("/cf/B"))
+            .andDo(print()).andExpect(status().isBadRequest())
+            .andReturn();
+    }
+
 
 }
