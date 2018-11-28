@@ -1,6 +1,6 @@
 package com.java.engineering.springmvctdd2.controller;
 
-import com.java.engineering.springmvctdd2.model.cfInfo;
+import com.java.engineering.springmvctdd2.model.CfInfo;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,27 +29,26 @@ public class CloudFoundryController {
     @GetMapping(value = "/cf", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getProvider() {
 
-        ResponseEntity<cfInfo> pivotalResponse = restTemplate.exchange(pivotalUrl, HttpMethod.GET, null, cfInfo.class);
-        ResponseEntity<cfInfo> blueMixResponse = restTemplate.exchange(blueMixUrl, HttpMethod.GET, null, cfInfo.class);
+        ResponseEntity<CfInfo> pivotalResponse = restTemplate.exchange(pivotalUrl, HttpMethod.GET, null, CfInfo.class);
+        ResponseEntity<CfInfo> blueMixResponse = restTemplate.exchange(blueMixUrl, HttpMethod.GET, null, CfInfo.class);
 
-        List<cfInfo> cfInfos = Arrays.asList(pivotalResponse.getBody(), blueMixResponse.getBody());
-
-        return ResponseEntity.ok(cfInfos);
+        List<CfInfo> CfInfos = Arrays.asList(pivotalResponse.getBody(), blueMixResponse.getBody());
+        return ResponseEntity.ok(CfInfos);
 
     }
 
     @GetMapping(value = "/cf/{provider}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getProviderByID(@PathVariable String provider) {
 
-        ResponseEntity<cfInfo> response;
+        ResponseEntity<CfInfo> response;
         switch (provider) {
             case "PWC":
                 response = restTemplate
-                    .exchange(pivotalUrl, HttpMethod.GET, null, cfInfo.class);
+                    .exchange(pivotalUrl, HttpMethod.GET, null, CfInfo.class);
                 break;
             case "BLU":
                 response = restTemplate
-                    .exchange(blueMixUrl, HttpMethod.GET, null, cfInfo.class);
+                    .exchange(blueMixUrl, HttpMethod.GET, null, CfInfo.class);
                 break;
             default:
                 response = ResponseEntity.badRequest().build();

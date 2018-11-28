@@ -27,7 +27,7 @@ public class Springmvctdd2ApplicationTests {
         this.mockMvc.perform(get("/cf"))
             .andDo(print()).andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(content().string("[{\"description\":\"Cloud Foundry sponsored by Pivotal\",\"api_version\":\"2.125.0\"},{\"description\":\"IBM Bluemix\",\"api_version\":\"2.106.0\"}]"))
+            .andExpect(content().string("[{\"description\":\"Cloud Foundry sponsored by Pivotal\",\"api_version\":\"2.126.0\"},{\"description\":\"IBM Bluemix\",\"api_version\":\"2.106.0\"}]"))
             .andReturn();
 
     }
@@ -37,7 +37,7 @@ public class Springmvctdd2ApplicationTests {
         this.mockMvc.perform(get("/cf/PWC"))
             .andDo(print()).andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(content().string("{\"description\":\"Cloud Foundry sponsored by Pivotal\",\"api_version\":\"2.125.0\"}"))
+            .andExpect(content().string("{\"description\":\"Cloud Foundry sponsored by Pivotal\",\"api_version\":\"2.126.0\"}"))
             .andReturn();
     }
 

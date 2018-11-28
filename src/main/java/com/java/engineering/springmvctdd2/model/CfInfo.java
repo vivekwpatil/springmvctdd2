@@ -1,6 +1,6 @@
 package com.java.engineering.springmvctdd2.model;
 
-public class cfInfo {
+public class CfInfo {
 
     private String description;
     private String api_version;
